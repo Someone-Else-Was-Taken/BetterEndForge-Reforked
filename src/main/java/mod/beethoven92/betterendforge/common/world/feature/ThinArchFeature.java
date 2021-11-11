@@ -60,7 +60,7 @@ public class ThinArchFeature extends Feature<NoFeatureConfig> {
         float bigRadius = ModMathHelper.randRange(15F, 20F, random);
         float variation = bigRadius * 0.3F;
         int count = ModMathHelper.randRange(2, 4, random);
-        
+
         for (int i = 0; i < count; i++) {
             float smallRadius = ModMathHelper.randRange(0.6F, 1.3F, random);
             SDF arch = new SDFTorus().setBigRadius(bigRadius - random.nextFloat() * variation).setSmallRadius(smallRadius).setBlock(block);
@@ -76,7 +76,7 @@ public class ThinArchFeature extends Feature<NoFeatureConfig> {
             float dx = (float) noise.eval(vec.getY() * 0.02, vec.getZ() * 0.02);
             float dy = (float) noise.eval(vec.getX() * 0.02, vec.getZ() * 0.02);
             float dz = (float) noise.eval(vec.getX() * 0.02, vec.getY() * 0.02);
-            vec.add(dx * 10, dy * 10, dz * 10);
+            vec.set(vec.getX() + dx * 10, vec.getY() + dy * 10, vec.getZ() + dz * 10);
         }).setSource(sdf);
         sdf = new SDFDisplacement().setFunction(vec -> {
             float offset = vec.getY() / bigRadius - 0.5F;
